@@ -37,14 +37,19 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".calculate button").addEventListener("click", () => {
         if (display.textContent && !isResult(display.textContent)) {
             display_sub.textContent += display.textContent;
-            display.textContent = "= result";
+            display.textContent = "= " + calculate(display_sub.textContent);
         }
     })
 
     // back 버튼 (<-) 클릭 이벤트
     document.querySelector(".back button").addEventListener("click", () => {
         if (display.textContent) {
-            display.textContent = display.textContent.substring(0, display.textContent.length - 1);
+            if (isResult(display.textContent)) {
+                display.textContent = display.textContent.substring(2, display.textContent.length - 1);
+            }
+            else {
+                display.textContent = display.textContent.substring(0, display.textContent.length - 1);
+            }
         }
     })
 
